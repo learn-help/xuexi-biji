@@ -1,0 +1,30 @@
+{% extends "learning_logs/base.html" %}
+
+{% block title %}
+   <title>主题 | 学习笔记</title>
+{% endblock title %}
+
+{% block header %}
+  <h2>主题</h2>
+{% endblock header %}
+
+{% block content %}
+  <ul>
+    {% if topics %}
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4><a href="{% url 'learning_logs:new_topic' %}">添加一个新主题……</a></h4>
+        </div>
+      </div>
+      {% for topic in topics %}
+        <div class="panel panel-default">
+          <div class="panel-boby">
+            <ul><h4><a href="{% url 'learning_logs:topic' topic.id %}">{{ topic }}</a></h4></ul>
+          </div>
+        </div>
+      {% endfor %}
+    {% else %}
+      <h4>你还没有添加任何主题，快来<a href="{% url 'learning_logs:new_topic' %}">添加</a>一个吧。</h4>
+    {% endif %}
+  </ul>
+{% endblock content %}

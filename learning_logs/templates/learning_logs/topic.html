@@ -1,0 +1,39 @@
+{% extends 'learning_logs/base.html' %}
+
+{% block title %}
+   <title>主题：{{ topic }} | 学习笔记</title>
+{% endblock title %}
+
+{% block header %}
+  <h2>主题：<a href="{% url 'learning_logs:topic' topic.id %}">{{ topic }}</a></h2>
+{% endblock header %}
+
+{% block content %}
+  {% if entries %}
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4><a href="{% url 'learning_logs:new_entry' topic.id %}">添加一个新条目……</a></h4>
+      </div>
+    </div>
+    {% for entry in entries %}
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4>
+            {{ entry.date_added|date:'Y-m-d H:i' }} UTC
+            <small>
+              <a href="{% url 'learning_logs:edit_entry' topic.id entry.id %}"  class="nav navbar-right">
+                编辑&nbsp;&nbsp;
+              </a>
+            </small>
+          </h4>
+        </div>
+        <div class="panel-boby">
+          <ul><h5>{{ entry.text|linebreaks }}</h5></ul>
+        </div>
+      </div>
+    {% endfor %}
+  {% else %}
+    <h4>这个主题还没有条目，快来<a href="{% url 'learning_logs:new_entry' topic.id %}">添加</a>一个吧。</h4>
+  {% endif %}
+
+{% endblock content %}

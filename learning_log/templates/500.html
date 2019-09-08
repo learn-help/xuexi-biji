@@ -1,0 +1,15 @@
+{% extends "learning_logs/base.html" %}
+
+{% block title %}
+   <title>找不到页面 | 学习笔记</title>
+{% endblock title %}
+
+{% block header %}
+  <h2>500错误</h2>
+{% endblock header %}
+
+{% block content %}
+  <h4>
+    您访问的页面找不到了，您可以<a href="{% url 'learning_logs:home' %}">回到主页</a>
+  </h4>
+{% endblock content %}
