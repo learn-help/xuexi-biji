@@ -20,12 +20,12 @@
         <div class="panel-heading">
           <h4>
             {{ entry.date_added|date:'Y-m-d H:i' }} UTC
-            <small>
-              <a href="{% url 'learning_logs:edit_entry' topic.id entry.id %}"  class="nav navbar-right">
+            <small class="nav navbar-right">
+              <a href="{% url 'learning_logs:edit_entry' topic.id entry.id %}">
                 编辑
               </a>
+              &nbsp;&nbsp;
             </small>
-            &nbsp;&nbsp;
           </h4>
         </div>
         <div class="panel-body">
