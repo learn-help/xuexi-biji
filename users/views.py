@@ -28,3 +28,5 @@ def view_register(request):
 
         context = {'form':form}
         return render(request, 'users/register.html', context)
+    else:
+        return HttpResponseRedirect('https://xuexi-biji.herokuapp.com/topics/')
