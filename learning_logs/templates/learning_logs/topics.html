@@ -18,8 +18,8 @@
       </div>
       {% for topic in topics %}
         <div class="panel panel-default">
-          <div class="panel-boby">
-            <ul><h4><a href="{% url 'learning_logs:topic' topic.id %}">{{ topic }}</a></h4></ul>
+          <div class="panel-body">
+            <a href="{% url 'learning_logs:topic' topic.id %}">{{ topic }}</a>
           </div>
         </div>
       {% endfor %}
