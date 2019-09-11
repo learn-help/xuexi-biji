@@ -19,7 +19,7 @@
       {% for topic in topics %}
         <div class="panel panel-default">
           <div class="panel-body">
-            <h4><a href="{% url 'learning_logs:topic' topic.id %}">{{ topic }}</a></h4>
+            <h3><a href="{% url 'learning_logs:topic' topic.id %}">{{ topic }}</a></h3>
           </div>
         </div>
       {% endfor %}
