@@ -2,3 +2,5 @@ ll_env/
 __pycache__/
 help_file/
 *.sqlite3
+*.sublime-project
+*.sublime-workspace
