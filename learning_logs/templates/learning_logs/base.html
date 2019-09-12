@@ -36,10 +36,10 @@
 
           <ul class="nav navbar-nav navbar-right">
             {% if user.is_authenticated %}
+              <li><a>{{ user.username }}</a></li>
               {% if user.username == 'admin' %}
                 <li><a href="{% url 'learning_logs:home' %}admin/">管理网站</a></li>
               {% endif %}
-              <li><a>{{ user.username }}</a></li>
               <li><a href="{% url 'users:logout' %}">退出</a></li>
             {% else %}
               <li><a href="{% url 'users:register' %}">注册</a></li>
