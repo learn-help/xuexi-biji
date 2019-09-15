@@ -11,6 +11,17 @@
 
 {% block content %}
 
+  <script type="text/javascript">
+    window.onload = function(){
+        var cookie = navigator.cookieEnabled;
+        if(cookie != true){
+            alert("请开启Cookie后再登录学习笔记");
+            window.location = "{% url 'learning_logs:home' %}";
+            return;
+        }
+    }
+  </script>
+  
   <form method="post" action="{% url 'users:login' %}" class="form">
     {% csrf_token %}
     {% bootstrap_form form %}
