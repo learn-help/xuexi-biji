@@ -14,9 +14,10 @@
   <script type="text/javascript">
     window.onload = function(){
         var cookie = navigator.cookieEnabled;
-        if(cookie != true){
+        if(cookie == false){
+            document.getElementById("btn").disabled=true;
+            document.getElementById("error").innerHTML = "请开启Cookie后再登录学习笔记";
             alert("请开启Cookie后再登录学习笔记");
-            window.location = "{% url 'learning_logs:home' %}";
             return;
         }
     }
@@ -27,7 +28,8 @@
     {% bootstrap_form form %}
 
     {% buttons %}
-      <button name="submit" class="btn btn-primary">登录</button>
+      <p id="error"></p>
+      <button name="submit" class="btn btn-primary" id="btn">登录</button>
       <a href="{% url 'users:register' %}">免费注册</a>
     {% endbuttons %}
     

@@ -11,12 +11,25 @@
 
 {% block content %}
 
+  <script type="text/javascript">
+    window.onload = function(){
+        var cookie = navigator.cookieEnabled;
+        if(cookie == false){
+            document.getElementById("btn").disabled=true;
+            document.getElementById("error").innerHTML = "请开启Cookie后再注册学习笔记";
+            alert("请开启Cookie后再注册学习笔记");
+            return;
+        }
+    }
+  </script>
+
   <form method="post" action="{% url 'users:register' %}" class="form">
     {% csrf_token %}
     {% bootstrap_form form %}
 
     {% buttons %}
-      <button name="submit" class="btn btn-primary">注册</button>
+      <p id="error"></p>
+      <button name="submit" class="btn btn-primary" id="btn">注册</button>
       <a href="{% url 'users:login' %}">已有账号，立即登录</a>
     {% endbuttons %}
 
