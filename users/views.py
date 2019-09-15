@@ -30,3 +30,8 @@ def view_register(request):
         return render(request, 'users/register.html', context)
     else:
         return HttpResponseRedirect('https://xuexi-biji.herokuapp.com/topics/')
+
+def view_other(request):
+    """切换用户"""
+    logout(request)
+    return HttpResponseRedirect('https://xuexi-biji.herokuapp.com/users/login/')

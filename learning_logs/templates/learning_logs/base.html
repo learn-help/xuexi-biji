@@ -40,9 +40,11 @@
               <li><a>{{ user.username }}</a></li>
               {% if user.username == 'admin' %}
                 <li><a href="{% url 'learning_logs:home' %}admin/">管理网站</a></li>
+                <li><a href="{% url 'users:other' %}">切换用户</a></li>
               {% endif %}
               {% if user.username == '周盛道' %}
                 <li><a href="{% url 'learning_logs:home' %}admin/">管理网站</a></li>
+                <li><a href="{% url 'users:other' %}">切换用户</a></li>
               {% endif %}
               <li><a href="{% url 'users:logout' %}">退出</a></li>
             {% else %}
