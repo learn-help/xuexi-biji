@@ -1,4 +1,5 @@
 {% extends 'learning_logs/base.html' %}
+{% load static %}
 
 {% block title %}
    <title>主题：{{ topic }} | 学习笔记</title>
@@ -22,7 +23,7 @@
             {{ entry.date_added|date:'Y-m-d H:i' }} UTC
             <small class="nav navbar-right">
               <a href="{% url 'learning_logs:edit_entry' topic.id entry.id %}">
-                编辑
+                <img src="{% static 'learning_logs/edit.svg' %}" title="编辑" alt="编辑">
               </a>
               &nbsp;&nbsp;
             </small>

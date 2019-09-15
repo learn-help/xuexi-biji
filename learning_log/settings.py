@@ -131,6 +131,11 @@ STATIC_URL = '/static/'
 # 我的设置
 LOGIN_URL = '/users/login/'
 
+STATICFILES_FINDERS = [
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+]
+
 # django-bootstrap3的设置
 BOOTSTRAP3 = {
     'include_jquery':True,
