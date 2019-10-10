@@ -13,6 +13,10 @@ def home(request):
     else:
         return render(request, 'learning_logs/home.html')
 
+def javascript(request):
+    """0000"""
+    return render(request, 'learning_logs/javascript.html')
+
 @login_required
 def topics(request):
     """显示当前用户的主题"""

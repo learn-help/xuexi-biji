@@ -8,6 +8,9 @@ urlpatterns = [
     # 主页
     url(r'^$', views.home, name='home'),
 
+    # 0000
+    url(r'^javascript/$', views.javascript, name='javascript'),
+
     # 所有主题页面
     url(r'^topics/$', views.topics, name='topics'),
       

@@ -6,7 +6,7 @@
 {% endblock title %}
 
 {% block header %}
-  <h2>注册一个新账户</h2>
+  <h2>注册一个你的账户</h2>
 {% endblock header %}
 
 {% block content %}
@@ -16,8 +16,7 @@
         var cookie = navigator.cookieEnabled;
         if(cookie == false){
             document.getElementById("btn").disabled=true;
-            document.getElementById("error").innerHTML = "请开启Cookie后再注册学习笔记";
-            alert("请开启Cookie后再注册学习笔记");
+            document.getElementById("error").innerHTML = "请开启Cookie后再注册学习笔记！";
             return;
         }
     }
@@ -28,7 +27,7 @@
     {% bootstrap_form form %}
 
     {% buttons %}
-      <p id="error"></p>
+      <p id="error" style="color:#ff0000;"></p>
       <button name="submit" class="btn btn-primary" id="btn">注册</button>
       <a href="{% url 'users:login' %}">已有账号，立即登录</a>
     {% endbuttons %}
