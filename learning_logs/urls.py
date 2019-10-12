@@ -8,9 +8,6 @@ urlpatterns = [
     # 主页
     url(r'^$', views.home, name='home'),
 
-    # 0000
-    url(r'^javascript/$', views.javascript, name='javascript'),
-
     # 所有主题页面
     url(r'^topics/$', views.topics, name='topics'),
       
@@ -18,7 +15,7 @@ urlpatterns = [
     url(r'^topics/(?P<topic_id>\d+)/$', views.topic, name='topic'),
 
     # 单个条目的详细信息页面
-    # url(r'topics/(?P<topic_id>\d+)/(?P<entry_id>\d+)/$', views.entry, name='entry'),)
+    # url(r'topics/(?P<topic_id>\d+)/(?P<entry_id>\d+)/$', views.entry, name='entry'),
 
     # 用于添加新主题的网页
     url(r'^topics/new/$', views.new_topic, name='new_topic'),
