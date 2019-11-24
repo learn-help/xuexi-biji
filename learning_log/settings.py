@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # 第三方应用程序
-    'bootstrap3',
+    'bootstrap4',
 
     # 我得应用程序
     'learning_logs',
@@ -111,7 +111,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'zh-hans'
 
 TIME_ZONE = 'UTC'
 
@@ -130,14 +130,15 @@ STATIC_URL = '/static/'
 
 # 我的设置
 LOGIN_URL = '/users/login/'
+LOGIN_REDIRECT_URL = '/topics/'
 
 STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 ]
 
-# django-bootstrap3的设置
-BOOTSTRAP3 = {
+# django-bootstrap4的设置
+BOOTSTRAP4 = {
     'include_jquery':True,
 }
 

@@ -11,17 +11,19 @@
 {% block content %}
   <ul>
     {% if topics %}
-      <div class="panel panel-default">
-        <div class="panel-heading">
+      <div class="card">
+        <div class="card-body">
           <h4><a href="{% url 'learning_logs:new_topic' %}">添加一个新主题……</a></h4>
         </div>
       </div>
+      <br>
       {% for topic in topics %}
-        <div class="panel panel-default">
-          <div class="panel-body">
+        <div class="card">
+          <div class="card-body">
             <h4><a href="{% url 'learning_logs:topic' topic.id %}">{{ topic }}</a></h4>
           </div>
         </div>
+        <br>
       {% endfor %}
     {% else %}
       <h4>你还没有添加任何主题，快来<a href="{% url 'learning_logs:new_topic' %}">添加</a>一个吧。</h4>
