@@ -14,7 +14,4 @@ urlpatterns = [
 
     # 注册页面
     url(r'^register/$', views.view_register, name='register'),
-
-    # 切换账号页面
-    url(r'^other/$', views.view_other, name='other'),
 ]

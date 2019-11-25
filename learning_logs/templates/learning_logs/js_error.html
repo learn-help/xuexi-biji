@@ -1,0 +1,18 @@
+{% extends "learning_logs/base.html" %}
+
+{% block title %}
+  <script type="text/javascript">
+    window.location = "{% url 'learning_logs:home' %}";
+  </script>
+  <title>无法使用JavaScript | 学习笔记</title>
+{% endblock title %}
+
+{% block header %}
+  <h1>无法使用JavaScript!</h1>
+{% endblock header %}
+
+{% block content %}
+  <p>
+    本网站依赖于JavaScript，请开启JavaScript后刷新本页。
+  </p>
+{% endblock content %}

@@ -13,6 +13,10 @@ def home(request):
     else:
         return render(request, 'learning_logs/home.html')
 
+def js_error(request):
+    """js_error页面"""
+    return render(request, 'learning_logs/js_error.html')
+
 @login_required
 def topics(request):
     """显示当前用户的主题"""
@@ -91,21 +95,3 @@ def edit_entry(request, topic_id, entry_id):
 
     context = {'entry':entry, 'topic':topic, 'form':form}
     return render(request, 'learning_logs/edit_entry.html', context)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -5,7 +5,7 @@
 <html lang="zh">
   <head>
     <noscript>
-      <META http-equiv="refresh" content="0;URL='{% static 'learning_logs/javascript_error.html' %}'">
+      <META http-equiv="refresh" content="0;URL='{% url 'learning_logs:js_error' %}">
     </noscript>
 
     <meta charset="utf-8">
@@ -25,17 +25,15 @@
     <!--导航栏-->
     <nav class="navbar navbar-expand-md bg-light navbar-light fixed-top">
       <a class="navbar-brand" href="{% url 'learning_logs:home' %}">学习笔记</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nb">
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <div class="collapse navbar-collapse" id="collapsibleNavbar">
+      <div class="collapse navbar-collapse" id="nb">
         <ul class="navbar-nav">
           <li class="nav-item">
             <a class="nav-link" href="{% url 'learning_logs:topics' %}">主题</a>
           </li>
-        </ul>
-        <ul class="navbar-nav clearfix">
           {% if user.is_authenticated %}
             <li class="nav-item">
               <a class="nav-link" href="">{{ user.username }}</a>
@@ -45,10 +43,10 @@
             </li>
           {% else %}
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'users:register' %}">注册</a>
+              <a class="nav-link" href="{% url 'users:login' %}">登录</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'users:login' %}">登录</a>
+              <a class="nav-link" href="{% url 'users:register' %}">注册</a>
             </li>
           {% endif %}
         </ul>
@@ -56,12 +54,12 @@
     </nav>
 
     <!--避免网站主体部分被导航栏遮盖-->
-    <br><br><br><br>
+    <br><br><br>
 
     <div class="container">
       <div class="page-header">
         {% block header %}{% endblock header %}
-        <br>
+        <hr>
       </div>
       <div>
         {% block content %}{% endblock content %}
