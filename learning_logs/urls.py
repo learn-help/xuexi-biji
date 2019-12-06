@@ -8,7 +8,7 @@ urlpatterns = [
     # 主页
     url(r'^$', views.home, name='home'),
 
-    # js_error页面
+    # javascript_error页面
     url(r'^js_error$', views.js_error, name='js_error'),
 
     # 所有主题页面

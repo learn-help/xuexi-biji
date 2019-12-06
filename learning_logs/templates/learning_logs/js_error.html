@@ -1,18 +1,71 @@
-{% extends "learning_logs/base.html" %}
+{% load static %}
 
-{% block title %}
-  <script type="text/javascript">
-    window.location = "{% url 'learning_logs:home' %}";
-  </script>
-  <title>无法使用JavaScript | 学习笔记</title>
-{% endblock title %}
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <script type="text/javascript">
+      window.location = "{% url 'learning_logs:home' %}";
+    </script>
 
-{% block header %}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>无法使用JavaScript | 学习笔记</title>
+
+    <link rel="stylesheet" href="{% static 'learning_logs/bootstrap.min.css' %}">
+    <script src="{% static 'learning_logs/jquery.min.js' %}"></script>
+    <script src="{% static 'learning_logs/popper.min.js' %}"></script>
+    <script src="{% static 'learning_logs/bootstrap.min.js' %}"></script>
+
+  </head>
+
+  <body>
+    <!--导航栏-->
+    <nav class="navbar navbar-expand-md bg-light navbar-light fixed-top">
+      <a class="navbar-brand" href="{% url 'learning_logs:home' %}">学习笔记</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#top_navbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="top_navbar">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'learning_logs:topics' %}">主题</a>
+          </li>
+          {% if user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link" href="">{{ user.username }}</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'users:logout' %}">退出</a>
+            </li>
+          {% else %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'users:login' %}">登录</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'users:register' %}">注册</a>
+            </li>
+          {% endif %}
+        </ul>
+      </div>  
+    </nav>
+
+    <!--避免网站主体部分被导航栏遮盖-->
+    <br><br><br>
+
+    <div class="container">
+      <div class="page-header">
   <h1>无法使用JavaScript!</h1>
-{% endblock header %}
-
-{% block content %}
+        <hr>
+      </div>
+      <div>
   <p>
     本网站依赖于JavaScript，请开启JavaScript后刷新本页。
   </p>
-{% endblock content %}
+      </div>
+    </div>
+
+  </body>
+</html>
