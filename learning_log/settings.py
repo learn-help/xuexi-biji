@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     # 第三方应用程序
     'bootstrap4',
 
-    # 我得应用程序
+    # 我的应用程序
     'learning_logs',
     'users',
     
@@ -113,7 +113,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'zh-hans'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Shanghai'
 
 USE_I18N = True
 
@@ -152,6 +152,8 @@ if cwd == '/app' or cwd[:4] == '/tmp':
 
     # 让request.is_secure()承认X-Forwarded-Proto头
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+    CSRF_COOKIE_SECURE = True
+    SESSION_COOKIE_SECURE = True
 
     # 只允许Heroku托管这个项目
     ALLOWED_HOSTS = ['xuexi-biji.herokuapp.com']

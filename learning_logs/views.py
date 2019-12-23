@@ -1,13 +1,20 @@
+# import logging
+# def write_log(msg):
+#     logging.basicConfig(filename='learning_log/static/logs', format='%(asctime)s %(message)s', level=logging.DEBUG)
+#     logging.info(msg, "\n")
+
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect, Http404
 from django.contrib.auth.decorators import login_required
 
 from .models import Topic, Entry
-from.forms import TopicForm, EntryForm
+from .forms import TopicForm, EntryForm
 
 
 def home(request):
     """学习笔记的主页"""
+    # log_object = 
+    # print(request.headers['User-Agent']+" "request.META['REMOTE_ADDR'], file=log_object)
     if request.user.is_authenticated:
         return HttpResponseRedirect('https://xuexi-biji.herokuapp.com/topics/')
     else:
