@@ -13,11 +13,11 @@
 
   <script type="text/javascript">
     window.onload = function(){
-        var cookie = navigator.cookieEnabled;
-        if(cookie == false){
-            document.getElementById("btn").disabled=true;
-            document.getElementById("error").innerHTML = "请开启Cookie后再登录学习笔记！";
-            return;
+      if(navigator.cookieEnabled == false){
+        document.getElementById("btn").disabled = true;
+        document.getElementById("errors").innerHTML = '<div id="ckError" class="alert alert-danger"></div>';
+        document.getElementById("ckError").innerHTML="请开启Cookie后再登录学习笔记！";
+        return;
         }
     }
   </script>
@@ -27,7 +27,7 @@
     {% bootstrap_form form %}
 
     {% buttons %}
-      <p id="error" style="color:#ff0000;"></p>
+      <div id="errors"></div>
       <button name="submit" class="btn btn-primary" id="btn">登录</button>
       <a href="{% url 'users:register' %}">免费注册</a>
     {% endbuttons %}
