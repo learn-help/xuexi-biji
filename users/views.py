@@ -10,7 +10,7 @@ from .forms import UserRegisterForm
 def view_logout(request):
     """退出"""
     logout(request)
-    return HttpResponseRedirect('https://xuexi-biji.herokuapp.com/')
+    return HttpResponseRedirect('/')
 
 def view_register(request):
     """注册新用户"""
@@ -28,12 +28,12 @@ def view_register(request):
                 authenticated_user = authenticate(username=new_user.username,
                     password=request.POST['password1'])
                 login(request, authenticated_user)
-                return HttpResponseRedirect('https://xuexi-biji.herokuapp.com/topics/')
+                return HttpResponseRedirect('/topics/')
 
         context = {'form':form}
         return render(request, 'users/register.html', context)
     else:
-        return HttpResponseRedirect('https://xuexi-biji.herokuapp.com/topics/')
+        return HttpResponseRedirect('/topics/')
 
 def register_check(request):
     """检查用户注册时输入内容是否有效"""
@@ -65,4 +65,4 @@ def register_check(request):
             return HttpResponse("false")
 
     else:
-        return HttpResponseRedirect('https://xuexi-biji.herokuapp.com/topics/')
+        return HttpResponseRedirect('/topics/')

@@ -3,6 +3,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect, Http404
 from django.contrib.auth.decorators import login_required
+from django.utils import timezone
 
 from .models import Topic, Entry
 from .forms import TopicForm, EntryForm
@@ -13,13 +14,9 @@ def home(request):
     # log_object = io.open('learning_log/static/logs', 'at')
     # print(time.time(), request.headers['User-Agent'], request.META['REMOTE_ADDR'], file=log_object, end='\n')
     if request.user.is_authenticated:
-        return HttpResponseRedirect('https://xuexi-biji.herokuapp.com/topics/')
+        return HttpResponseRedirect('/topics/')
     else:
         return render(request, 'learning_logs/home.html')
-
-def js_error(request):
-    """js_error页面"""
-    return render(request, 'learning_logs/js_error.html')
 
 @login_required
 def topics(request):
@@ -52,7 +49,7 @@ def new_topic(request):
             new_topic = form.save(commit=False)
             new_topic.owner = request.user
             new_topic.save()
-            return HttpResponseRedirect('https://xuexi-biji.herokuapp.com/topics/')
+            return HttpResponseRedirect('/topics/')
 
     context = {'form':form}
     return render(request, 'learning_logs/new_topic.html', context)
@@ -71,10 +68,10 @@ def new_entry(request, topic_id):
         # POST提交的数据，对数据进行处理
         form = EntryForm(data=request.POST)
         if form.is_valid():
-            new_entry = form.save(commit=False)
-            new_entry.topic = topic
-            new_entry.save()
-            return HttpResponseRedirect('https://xuexi-biji.herokuapp.com/topics/'+topic_id+'/')
+            new = form.save(commit=False)
+            new.topic = topic
+            new.save()
+            return HttpResponseRedirect('/topics/'+topic_id+'/')
 
     context = {'topic':topic, 'form':form}
     return render(request, 'learning_logs/new_entry.html', context)   
@@ -94,8 +91,10 @@ def edit_entry(request, topic_id, entry_id):
         # POST提交的数据，对数据进行处理
         form = EntryForm(instance=entry, data=request.POST)
         if form.is_valid():
-            form.save()
-            return HttpResponseRedirect('https://xuexi-biji.herokuapp.com/topics/'+topic_id+'/')
+            edit = form.save(commit=False)
+            edit.date_added = timezone.now()
+            edit.save()
+            return HttpResponseRedirect('/topics/'+topic_id+'/')
 
     context = {'entry':entry, 'topic':topic, 'form':form}
     return render(request, 'learning_logs/edit_entry.html', context)

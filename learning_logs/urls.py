@@ -8,9 +8,6 @@ urlpatterns = [
     # 主页
     re_path(r'^$', views.home, name='home'),
 
-    # javascript_error页面
-    re_path(r'^js_error$', views.js_error, name='js_error'),
-
     # 所有主题页面
     re_path(r'^topics/$', views.topics, name='topics'),
       
