@@ -145,6 +145,9 @@ BOOTSTRAP4 = {
 
 # HeroKu设置
 cwd = os.getcwd()
+if cwd[:4] == '/tmp':
+    SECRET_KEY = "OBMdP7aH:+?*kOGX`o<TG6[.>xr{rsj`iWk6IJ2*?PlV{:+{)u[pct&pBLi"
+    
 if cwd == '/app' or cwd[:4] == '/tmp':
     import dj_database_url
     DATABASES = {
