@@ -19,8 +19,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 # SECURITY WARNING: keep the secret key used in production secret!
-with open('learning_log/secret_key.txt') as f:
-    SECRET_KEY = f.read().strip()
+try:
+    with open('learning_log/secret_key.txt') as f:
+        SECRET_KEY = f.read().strip()
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -147,7 +148,7 @@ BOOTSTRAP4 = {
 cwd = os.getcwd()
 if cwd[:4] == '/tmp':
     SECRET_KEY = "OBMdP7aH:+?*kOGX`o<TG6[.>xr{rsj`iWk6IJ2*?PlV{:+{)u[pct&pBLi"
-    
+
 if cwd == '/app' or cwd[:4] == '/tmp':
     import dj_database_url
     DATABASES = {
