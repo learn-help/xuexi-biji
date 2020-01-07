@@ -1,4 +1,5 @@
 {% extends "learning_logs/base.html" %}
+{% load static %}
 {% load bootstrap4 %}
 
 {% block title %}
@@ -10,106 +11,26 @@
 {% endblock header %}
 
 {% block content %}
-
-  <script type="text/javascript">
-    window.onload = function() {
-      document.getElementById("errors").innerHTML = '<div id="unError" class="alert alert-danger"></div><div id="pw1Error" class="alert alert-danger"></div><div id="pw2Error" class="alert alert-danger"></div><div id="ckError" class="alert alert-danger"></div>';
-
-      document.getElementById("unError").style.display = "none";
-      document.getElementById("pw1Error").style.display = "none";
-      document.getElementById("pw2Error").style.display = "none";
-      document.getElementById("ckError").style.display = "none";
-
-      if(navigator.cookieEnabled == false) {
-        document.getElementById("btn").disabled = true;
-
-        document.getElementById("ckError").innerHTML="请开启Cookie后再注册学习笔记！";
-        document.getElementById("ckError").style.display = "";
-        return;
-        }
-    }
-
-    var username, password1, password2;
-    var ajax_data;
-
-    function SaveUsername(str) {
-      if (str) {
-        username=str;
-        ajax_data=username;
-        Check(ajax_data, "1", "unError", "已存在一位使用该名字的用户");
-      }
-      else {
-        document.getElementById("unError").style.display = "";
-        document.getElementById("unError").innerHTML = "\n用户名不可为空";
-      }
-    }
-
-    function SavePassword1(str) {
-      if (str) {
-        password1=str;
-        ajax_data=str;
-        Check(ajax_data, "2", "pw1Error", "密码长度太短、密码只包含数字或密码是常用密码");
-      }
-      else {
-        document.getElementById("pw1Error").style.display = "";
-        document.getElementById("pw1Error").innerHTML = "\n密码不可为空";
-      }
-    }
-
-    function SavePassword2(str) {
-      if (str) {
-        password2=str;
-        if (password2==password1) {
-          document.getElementById("pw2Error").style.display = "none";
-          document.getElementById("pw2Error").innerHTML = "";
-        } 
-        else {
-          document.getElementById("pw2Error").innerHTML = "两次输入的密码不一致";
-          document.getElementById("pw2Error").style.display = "";
-        }
-      }
-      else {
-        document.getElementById("pw2Error").innerHTML = "\n密码确认不可为空";
-        document.getElementById("pw2Error").style.display = "";
-      }
-    }
-
-    function Check(ajax_data, model, error_add, error_msg) {
-      var xmlhttp;
-      if (window.XMLHttpRequest) {
-        xmlhttp = new XMLHttpRequest();
-      }
-      else {
-        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-      }
-      xmlhttp.onreadystatechange = function() {
-        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-          if (xmlhttp.responseText == "false") {
-            document.getElementById(error_add).innerHTML = error_msg;
-            document.getElementById(error_add).style.display = "";
-          }
-          else {
-            document.getElementById(error_add).style.display = "none";
-            document.getElementById(error_add).innerHTML = "";
-          }
-        }
-      }
-      xmlhttp.open("GET", "{% url 'users:register_check' %}?m="+model+"&d="+ajax_data, true);
-      xmlhttp.send();
-    }
-  </script>
-
   <form id="form" method="post" action="{% url 'users:register' %}" class="form">
     {% csrf_token %}
     {% bootstrap_form form %}
 
+    <div id="unError" class="alert alert-danger" style="display: none"></div>
+    <div id="pw1Error" class="alert alert-danger" style="display: none"></div>
+    <div id="pw2Error" class="alert alert-danger" style="display: none"></div>
+    <div id="ckError" class="alert alert-danger" style="display: ">
+      请开启Cookie后再注册学习笔记！
+    </div>
+
     {% buttons %}
-      <div id="errors"></div>
-      <button name="submit" class="btn btn-primary" id="btn">注册</button>
-      <a id="toLogin" href="{% url 'users:login' %}">已有账号，立即登录</a>
+      <button id="btn" name="submit" class="btn btn-primary" disabled="true">
+        注册
+      </button>
+      <a id="toLoginPage" href="{% url 'users:login' %}">已有账号，立即登录</a>
     {% endbuttons %}
 
     <input type="hidden" name="next" value="{% url 'learning_logs:topics' %}">
   </form>
 
+  <script src="{% static 'users/registerPageAjaxCheckUsername.js' %}"></script>
 {% endblock content %}
