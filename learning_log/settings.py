@@ -23,7 +23,7 @@ try:
     with open('learning_log/secret_key.txt') as f:
         SECRET_KEY = f.read().strip()
 except Exception as e:
-    print(e)
+    SECRET_KEY = "OBMdP7aH:+?*kOGX`o<TG6[.>xr{rsj`iWk6IJ2*?PlV{:+{)u[pct&pBLi"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -148,9 +148,6 @@ BOOTSTRAP4 = {
 
 # HeroKu设置
 cwd = os.getcwd()
-if cwd[:4] == '/tmp':
-    SECRET_KEY = "OBMdP7aH:+?*kOGX`o<TG6[.>xr{rsj`iWk6IJ2*?PlV{:+{)u[pct&pBLi"
-
 if cwd == '/app' or cwd[:4] == '/tmp':
     import dj_database_url
     DATABASES = {
