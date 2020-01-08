@@ -1,4 +1,4 @@
-"""为引用程序learning_logs定义URL模式"""
+"""为引用程序 learning_logs 定义 URL 模式"""
 
 from django.urls import path
 

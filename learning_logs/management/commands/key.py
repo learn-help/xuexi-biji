@@ -14,13 +14,14 @@ class Command(BaseCommand):
         '2', '3', '4', '5', '6', '7', '8', '9', '`', '~', '!', '@', '#', '$', 
         '%', '^', '&', '*', '(', ')', '-', '_', '=', '+', '[', '{', ']', '}', 
         '\\', '|', ';', ':', '\'', '"', ',', '<', '.', '>', '/', '?']
-        i = randrange(32, 64)
         secret_key = ''
+
         self.stdout.write("Generating SECRET_KEY...")
-        while i:
+        for x in range(0, randrange(32, 64)):
             secret_key += choice(char)
-            i -= 1
+
         self.stdout.write("Writing SECRET_KEY to learning_log/secret_key.txt...")
         with open('learning_log/secret_key.txt', 'wt') as f:
             f.write(secret_key)
+            
         self.stdout.write("Change or add SECRET_KEY is OK.Restart the server to update the SECRET_KEY\nExiting...")

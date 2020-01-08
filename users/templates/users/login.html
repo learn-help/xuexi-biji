@@ -11,28 +11,32 @@
 
 {% block content %}
 
-  <script type="text/javascript">
-    window.onload = function(){
-      if(navigator.cookieEnabled == false){
-        document.getElementById("btn").disabled = true;
-        document.getElementById("errors").innerHTML = '<div id="ckError" class="alert alert-danger"></div>';
-        document.getElementById("ckError").innerHTML="请开启Cookie后再登录学习笔记！";
-        return;
-        }
-    }
-  </script>
-  
   <form method="post" action="{% url 'users:login' %}" class="form">
     {% csrf_token %}
     {% bootstrap_form form %}
 
+    <div id="ckError" class="alert alert-danger" style="display: ">
+      请开启Cookie后再登录学习笔记！
+    </div>
+    
     {% buttons %}
-      <div id="errors"></div>
-      <button name="submit" class="btn btn-primary" id="btn">登录</button>
+      <button id="btn" name="submit" class="btn btn-primary" disabled="true">
+        登录
+      </button>
       <a href="{% url 'users:register' %}">免费注册</a>
     {% endbuttons %}
     
     <input type="hidden" name="next" value="{% url 'learning_logs:topics' %}">
   </form>
+
+  <script type="text/javascript">
+    window.onload = function(){
+      if(navigator.cookieEnabled == true){
+        document.getElementById("btn").disabled = false;
+        document.getElementById("ckError").style.display = "none";
+        return;
+        }
+    }
+  </script>
 
 {% endblock content %}

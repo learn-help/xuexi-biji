@@ -11,6 +11,7 @@
 {% endblock header %}
 
 {% block content %}
+
   <form id="form" method="post" action="{% url 'users:register' %}" class="form">
     {% csrf_token %}
     {% bootstrap_form form %}
@@ -33,4 +34,5 @@
   </form>
 
   <script src="{% static 'users/registerPageAjaxCheckUsername.js' %}"></script>
+  
 {% endblock content %}

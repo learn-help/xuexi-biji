@@ -71,7 +71,7 @@ def new_entry(request, topic_id):
             new = form.save(commit=False)
             new.topic = topic
             new.save()
-            return HttpResponseRedirect('/topics/'+topic_id+'/')
+            return HttpResponseRedirect('/topics/'+str(topic_id)+'/')
 
     context = {'topic':topic, 'form':form}
     return render(request, 'learning_logs/new_entry.html', context)   
@@ -94,7 +94,7 @@ def edit_entry(request, topic_id, entry_id):
             edit = form.save(commit=False)
             edit.date_added = timezone.now()
             edit.save()
-            return HttpResponseRedirect('/topics/'+topic_id+'/')
+            return HttpResponseRedirect('/topics/'+str(topic_id)+'/')
 
     context = {'entry':entry, 'topic':topic, 'form':form}
     return render(request, 'learning_logs/edit_entry.html', context)

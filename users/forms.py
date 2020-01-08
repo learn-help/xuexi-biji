@@ -3,6 +3,8 @@ from django.contrib.auth import password_validation
 from django.contrib.auth import forms
 from django.utils.translation import gettext, gettext_lazy as _
 
+from .models import UserInfo
+
 class UserRegisterForm(forms.UserCreationForm):
     password1 = django_forms.CharField(
         label=_("Password"),
@@ -20,3 +22,15 @@ class UserRegisterForm(forms.UserCreationForm):
         super().__init__(*args, **kwargs)
         if self._meta.model.USERNAME_FIELD in self.fields:
             self.fields[self._meta.model.USERNAME_FIELD].widget.attrs.update({'autofocus': True, 'onkeyup': 'SaveUsername(this.value)'})
+
+class EmailForm(django_forms.ModelForm):
+    class Meta:
+        model = UserInfo
+        fields = ['email']
+        labels = {'email': '您的电子邮件地址'}
+
+class VerifyForm(django_forms.ModelForm):
+    class Meta:
+        model = UserInfo
+        fields = ['check_code']
+        labels = {'check_code': '您收到的验证码'}

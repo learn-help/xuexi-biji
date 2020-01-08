@@ -2,7 +2,7 @@ var username, password1, password2;
 var ajax_data;
 
 window.onload = function() {
-    if(navigator.cookieEnabled != false) {
+    if(navigator.cookieEnabled == true) {
         document.getElementById("btn").disabled = false;
         document.getElementById("ckError").style.display = "none";
       }
