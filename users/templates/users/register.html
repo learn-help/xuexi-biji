@@ -15,10 +15,12 @@
   <form id="form" method="post" action="{% url 'users:register' %}" class="form">
     {% csrf_token %}
     {% bootstrap_form form %}
+    <div class="form-group"><label for="id_email">电子邮件</label><input type="email" name="email" maxlength="64" onblur="SaveEmail(this.value)" onkeyup="SaveEmail(this.value)" onfocus="SaveEmail(this.value)" class="form-control" placeholder="电子邮件" title="" required id="id_email"></div>
 
     <div id="unError" class="alert alert-danger" style="display: none"></div>
     <div id="pw1Error" class="alert alert-danger" style="display: none"></div>
     <div id="pw2Error" class="alert alert-danger" style="display: none"></div>
+    <div id="emError" class="alert alert-danger" style="display: none"></div>
     <div id="ckError" class="alert alert-danger" style="display: ">
       请开启Cookie后再注册学习笔记！
     </div>

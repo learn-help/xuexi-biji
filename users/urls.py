@@ -15,12 +15,15 @@ urlpatterns = [
     # 注册页面
     path('register/', views.register, name='register'),
 
-    # 输入邮箱地址页面
-    # path('email/', views.email, name='email'),
-
     # 验证邮箱页面
-    # path('verify/', views.verify, name='verify'),
+    path('verify/', views.verify, name='verify'),
 
-    # 检查用户注册时输入内容是否有效的 API
-    path('register/check/', views.register_check, name='register_check'),
+    # 发送邮件
+    path('send-mail/', views.send_mail, name='send_mail'),
+
+    # 检查用户验证电子邮件时输入的内容是否有效的 API
+    path('check/verify-code/', views.verify_code, name='verify_code'),
+
+    # 检查用户注册时输入的内容是否有效的 API
+    path('check/username/', views.register_check, name='register_check'),
 ]

@@ -16,7 +16,8 @@
     {% csrf_token %}
     <div class="form-group">
       <label for="id_check_code">您收到的验证码</label>
-      <input type="text" name="check_code" maxlength="64" onblur="SaveEmail(this.value)" onkeyup="SaveEmail(this.value)" onfocus="SaveEmail(this.value)" class="form-control" placeholder="您收到的验证码" title="" required id="id_check_code">
+      <input type="text" name="check_code" maxlength="64" onblur="SaveEmail(this.value)" onkeyup="SaveEmail(this.value)" onfocus="SaveEmail(this.value)" class="form-control is-invalid" placeholder="您收到的验证码" title="" required id="id_check_code">
+      <div class="invalid-feedback">您输入的验证码不正确。</div>
     </div>
 
     <div id="seError" class="alert alert-danger" style="display: none"></div>
@@ -29,8 +30,5 @@
   </form>
 
   <script src="{% static 'users/verifyPageAjaxCheckCode.js' %}"></script>
-  <script type="text/javascript">
-    window.onload = SendEmail()
-  </script>
 
 {% endblock content %}

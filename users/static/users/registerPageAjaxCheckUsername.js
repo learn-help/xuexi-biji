@@ -1,5 +1,5 @@
-var username, password1, password2;
-var ajax_data;
+let username, password1, password2;
+let ajax_data;
 
 window.onload = function() {
     if(navigator.cookieEnabled == true) {
@@ -20,14 +20,14 @@ function SaveUsername(str) {
         ajax_data = username;
 
         // 使用 ajax 检查用户名是否已经被使用
-        var xmlhttp, url;
+        let xmlhttp, url;
         if (window.XMLHttpRequest) {
             xmlhttp = new XMLHttpRequest();
         }
         else {
             xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
         }
-        url = "/users/register/check/?d="+ajax_data;
+        url = "/users/check/username/?d="+ajax_data;
         xmlhttp.onreadystatechange = function() {
             if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                 if (xmlhttp.responseText == "false") {
@@ -99,4 +99,20 @@ function SavePassword2(str) {
   else {
       errors("pw2Error", "密码确认不可为空", "");
   }
+}
+
+function SaveEmail(str) {
+    if (str) {
+        let re = /^\w+@[a-zA-Z0-9]{2,10}(?:\.[a-z]{2,4}){1,3}$/;
+        if (re.test(str)) {
+            errors("emError", "", "none");
+        } 
+        else {
+            errors("emError", "邮箱格式不匹配", "");
+        }
+    } 
+    else {
+      errors("emError", "电子邮件地址不可为空", "");
+    }
+    
 }
