@@ -34,6 +34,11 @@
             <li class="nav-item">
               <a class="nav-link" href="">{{ user.username }}</a>
             </li>
+            {% if user.is_staff %}
+              <li class="nav-item">
+                <a class="nav-link" href="/admin/">管理网站</a>
+              </li>
+            {% endif %}
             <li class="nav-item">
               <a class="nav-link" href="{% url 'users:logout' %}">退出</a>
             </li>
