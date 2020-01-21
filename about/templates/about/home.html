@@ -1,0 +1,21 @@
+{% extends "about/base.html" %}
+
+{% block title %}
+  <link rel="canonical" href="/">
+  <title>主页 | 学生助手</title>
+  <meta name="baidu-site-verification" content="BKfDc7nEdz" />
+{% endblock title %}
+
+{% block header %}
+  <div class="jumbotron">
+    <h1>为学生提供最优质的服务</h1>
+  </div>
+{% endblock header %}
+
+{% block content %}
+  <h2>
+    <a href="{% url 'users:register' %}">注册</a>一个帐户来使用学生助手的全部功能。
+  </h2>
+  <br />
+  <h2>看看我们的全部功能</h2>
+{% endblock content %}

@@ -1,0 +1,90 @@
+{% load static %}
+{% load bootstrap4 %}
+
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <script type="text/javascript">if(window.location.protocol == "http:" && window.location.host == "xuexi-biji.herokuapp.com") {window.location.href = "https://xuexi-biji.herokuapp.com"+window.location.pathname;}</script>
+    
+    <meta charset="utf-8" />
+    <meta name="theme-color" content="#F8F9FA" />
+    <meta name="description" content="学生助手为学生提供最优质的服务" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    {% block title %}<title>学生助手</title>{% endblock title %}
+
+  </head>
+
+  <body>
+    <!--导航栏-->
+    <nav class="navbar navbar-expand-md bg-light navbar-light fixed-top">
+      <a class="navbar-brand" href="{% url 'about:home' %}">学生助手</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" 
+      data-target="#top_navbar">
+        <span alt="菜单" title="菜单" class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="top_navbar">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'learning_logs:topics' %}">学习笔记</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav">
+          <!-- <li class="nav-item col-lg-12"></li> -->
+          {% if user.is_authenticated %}
+            <!-- 已登录用户显示内容 -->
+            <li class="nav-item">
+              <a class="nav-link" href="">{{ user.username }}</a>
+            </li>
+
+            {% if user.is_staff %}
+              <!-- 管理员显示内容 -->
+              <li class="nav-item">
+                <a class="nav-link" href="/admin/">管理网站</a>
+              </li>
+            {% endif %}
+
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'users:logout' %}">退出</a>
+            </li>
+          {% else %}
+            <!-- 未登录用户显示内容 -->
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'users:login' %}">登录</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'users:register' %}">注册</a>
+            </li>
+          {% endif %}
+        </ul>
+      </div>  
+    </nav>
+
+    <!--避免网站主体部分被导航栏遮盖-->
+    <br><br><br>
+
+    <div class="container">
+      <div class="page-header">
+        {% block header %}{% endblock header %}
+        <hr>
+      </div>
+      <div>
+        {% block content %}{% endblock content %}
+      </div>
+    </div>
+
+    <link rel="stylesheet" href="{% static 'learning_logs/bootstrap.min.css' %}">
+    <script src="{% static 'learning_logs/jquery.min.js' %}"></script>
+    <!-- <script src="{% static 'learning_logs/popper.min.js' %}"></script> -->
+    <script src="{% static 'learning_logs/bootstrap.min.js' %}"></script>
+    
+    <noscript>
+      <div class="alert alert-danger fixed-bottom">
+        您的浏览器无法使用 Javascript ，这可能导致您无法使用本站的一些功能，为了获得更好的浏览体验，建议您开启 Javascript 后<a class="alert-link" href="">刷新</a>页面。
+      </div>
+    </noscript>
+
+  </body>
+</html>
