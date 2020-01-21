@@ -2,6 +2,7 @@ ll_env/
 __pycache__/
 help_file/
 learning_log/secret_key.txt
+learning_log/mail_password.txt
 *.sqlite3
 *.sublime-project
 *.sublime-workspace

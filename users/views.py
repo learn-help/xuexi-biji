@@ -14,15 +14,18 @@ from django.contrib.auth import logout as django_logout
 from django.conf.urls import url
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.gzip import gzip_page
 
+from learning_log.settings import MAIL_PASSWORD
 from .models import UserInfo
 from .forms import UserRegisterForm, EmailForm, VerifyForm
 
 def logout(request):
     """退出"""
     django_logout(request)
-    return HttpResponseRedirect(reverse('learning_logs:home'))
+    return HttpResponseRedirect(reverse('about:home'))
 
+@gzip_page
 def register(request):
     """注册新用户"""
     if not request.user.is_authenticated:
@@ -49,8 +52,9 @@ def register(request):
         context = {'form':form}
         return render(request, 'users/register.html', context)
     else:
-        return HttpResponseRedirect(reverse('learning_logs:topics'))
+        return HttpResponseRedirect(reverse('about:home'))
 
+@gzip_page
 @login_required
 def verify(request):
     """为新用户验证电子邮件地址"""
@@ -63,13 +67,13 @@ def verify(request):
             if request.POST['check_code'] == user_info.check_code:
                 user_info.check_email = True
                 user_info.save()
-                return HttpResponseRedirect(reverse('learning_logs:topics'))
+                return HttpResponseRedirect(reverse('about:home'))
             else:
                 return render(request, 'users/verify_error.html')
         else:
             return render(request, 'users/verify.html')
     else:
-        return HttpResponseRedirect(reverse('learning_logs:topics'))
+        return HttpResponseRedirect(reverse('about:home'))
 
     
 
@@ -102,7 +106,7 @@ def send_mail(request):
             server = smtplib.SMTP_SSL('smtp.sina.com')
             server.starttls()
             server.set_debuglevel(1)
-            server.login('26922dd@sina.com', 'fdc2bc909389c5c7')
+            server.login('26922dd@sina.com', MAIL_PASSWORD)
             server.sendmail('26922dd@sina.com', [user_info.email], msg.as_string())
             server.quit()
         except Exception as e:
@@ -110,9 +114,9 @@ def send_mail(request):
         else:
             return HttpResponse("OK")
     else:
-        return HttpResponseRedirect(reverse('learning_logs:topics'))
+        return HttpResponse("error")
     
-def register_check(request):
+def username(request):
     """检查用户注册时输入内容是否有效"""
     if not request.user.is_authenticated and request.method == 'GET' and request.GET:
         for user in User.objects.all():

@@ -1,7 +1,8 @@
-{% extends "learning_logs/base.html" %}
+{% extends "about/base.html" %}
 
 {% block title %}
-   <title>主题 | 学习笔记</title>
+  <link rel="canonical" href="{% url 'learning_logs:topics' %}">
+  <title>主题 | 学习笔记 | 学生助手</title>
 {% endblock title %}
 
 {% block header %}

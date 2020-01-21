@@ -25,5 +25,5 @@ urlpatterns = [
     path('check/verify-code/', views.verify_code, name='verify_code'),
 
     # 检查用户注册时输入的内容是否有效的 API
-    path('check/username/', views.register_check, name='register_check'),
+    path('check/username/', views.username, name='username'),
 ]

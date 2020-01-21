@@ -1,8 +1,9 @@
-{% extends "learning_logs/base.html" %}
+{% extends "about/base.html" %}
 {% load bootstrap4 %}
 
 {% block title %}
-   <title>修改{{ topic }}的一个条目 | 学习笔记</title>
+  <link rel="canonical" href="{% url 'learning_logs:edit_entry' topic.id entry.id %}">
+  <title>修改{{ topic }}的一个条目 | 学习笔记 | 学生助手</title>
 {% endblock title %}
 
 {% block header %}
@@ -16,6 +17,7 @@
 
     {% buttons %}
       <button name="submit" class="btn btn-primary">保存</button>
+      <button name="back" class="btn btn-secondary" onclick='window.location.replace("{% url 'learning_logs:topic' topic.id %}")'>取消</button>
     {% endbuttons %}
   </form>
 {% endblock content %}

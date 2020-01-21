@@ -1,9 +1,10 @@
-{% extends "learning_logs/base.html" %}
+{% extends "about/base.html" %}
 {% load static %}
 {% load bootstrap4 %}
 
 {% block title %}
-   <title>验证电子邮件 | 学习笔记</title>
+  <link rel="canonical" href="{% url 'users:verify' %}">
+  <title>验证电子邮件 | 学生助手</title>
 {% endblock title %}
 
 {% block header %}

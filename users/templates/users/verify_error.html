@@ -1,9 +1,10 @@
-{% extends "learning_logs/base.html" %}
+{% extends "about/base.html" %}
 {% load static %}
 {% load bootstrap4 %}
 
 {% block title %}
-   <title>验证电子邮件 | 学习笔记</title>
+  <link rel="canonical" href="{% url 'users:verify' %}">
+  <title>验证电子邮件 | 学生助手</title>
 {% endblock title %}
 
 {% block header %}
@@ -22,9 +23,9 @@
 
     <div id="seError" class="alert alert-danger" style="display: none"></div>
     <div id="cdError" class="alert alert-danger" style="display: none"></div>
-
-    {% buttons %}
-      <p>没有收到邮件？点击<a href="javascript:SendEmail()">这里</a>重新发送。</p>
+    <p>没有收到邮件？点击<a href="javascript:SendEmail()">这里</a>重新发送。</p>
+    
+    {% buttons %}  
       <button name="submit" class="btn btn-primary" id="btn">提交</button>
     {% endbuttons %}
   </form>

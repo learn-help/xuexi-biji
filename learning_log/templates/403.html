@@ -1,4 +1,4 @@
-{% extends "learning_logs/base.html" %}
+{% extends "about/base.html" %}
 
 {% block title %}
    <title>CSRF 验证失败 | 学习笔记</title>
@@ -10,7 +10,7 @@
 
 {% block content %}
   <h4>
-    您可能没有开启 Cookie ，导致 CSRF 验证失败，<span id="countdown">3</span>秒后自动跳转到<a href="">上一页</a>。
+    您可能没有开启 Cookie ，导致 CSRF 验证失败， <span id="countdown">3</span> 秒后自动跳转到<a href="">上一页</a>。
   </h4>
   <script type="text/javascript">
     window.onload = function(){

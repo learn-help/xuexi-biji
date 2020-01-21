@@ -1,8 +1,9 @@
-{% extends 'learning_logs/base.html' %}
+{% extends "about/base.html" %}
 {% load static %}
 
 {% block title %}
-   <title>主题：{{ topic }} | 学习笔记</title>
+  <link rel="canonical" href="{% url 'learning_logs:topic' topic.id %}">
+  <title>主题：{{ topic }} | 学习笔记 | 学生助手</title>
 {% endblock title %}
 
 {% block header %}
@@ -13,7 +14,7 @@
   {% if entries %}
     <div class="card">
       <div class="card-body">
-        <h4><a href="{% url 'learning_logs:new_entry' topic.id %}">添加一个新条目……</a></h4>
+        <h4><a href="{% url 'learning_logs:new_entry' topic.id %}">添加一个新条目</a></h4>
       </div>
     </div>
     <br>
@@ -28,7 +29,9 @@
           </h4>
         </div>
         <div class="card-body">
-          {{ entry.text|linebreaks }}
+          <pre>
+{{ entry.text }}
+          </pre>
         </div>
       </div>
       <br>

@@ -1,8 +1,9 @@
-{% extends "learning_logs/base.html" %}
+{% extends "about/base.html" %}
 {% load bootstrap4 %}
 
 {% block title %}
-   <title>添加新主题 | 学习笔记</title>
+  <link rel="canonical" href="{% url 'learning_logs:new_topic' %}">
+  <title>添加新主题 | 学习笔记 | 学生助手</title>
 {% endblock title %}
 
 {% block header %}
@@ -10,12 +11,13 @@
 {% endblock header %}
 
 {% block content %}
-  <form action="{% url 'learning_logs:new_topic' %}" method="post" class="form">
+  <form class="form" action="{% url 'learning_logs:new_topic' %}" method="post">
     {% csrf_token %}
     {% bootstrap_form form %}
     
     {% buttons %}
       <button name="submit" class="btn btn-primary">添加</button>
+      <button name="back" class="btn btn-secondary" onclick='window.location.replace("/notes/")'>取消</button>
     {% endbuttons %}
   </form>
 {% endblock content %}

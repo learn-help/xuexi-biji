@@ -22,8 +22,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 try:
     with open('learning_log/secret_key.txt') as f:
         SECRET_KEY = f.read().strip()
-except Exception as e:
-    SECRET_KEY = "OBMdP7aH:+?*kOGX`o<TG6[.>xr{rsj`iWk6IJ2*?PlV{:+{)u[pct&pBLi"
+except Exception:
+    SECRET_KEY = "this_is@a.test=SECRET_KEY"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'bootstrap4',
 
     # 我的应用程序
+    'about',
     'learning_logs',
     'users',
     
@@ -134,7 +135,12 @@ STATIC_URL = '/static/'
 
 # 我的设置
 LOGIN_URL = '/users/login/'
-LOGIN_REDIRECT_URL = '/topics/'
+
+try:
+    with open('learning_log/mail_password.txt') as f:
+        MAIL_PASSWORD = f.read().strip()
+except Exception:
+    MAIL_PASSWORD = "this_is@a.test=MAIL_PASSWORD"
 
 STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',

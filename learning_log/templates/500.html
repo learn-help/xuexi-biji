@@ -1,4 +1,4 @@
-{% extends "learning_logs/base.html" %}
+{% extends "about/base.html" %}
 
 {% block title %}
    <title>发生意外错误 | 学习笔记</title>
@@ -10,10 +10,10 @@
 
 {% block content %}
   <h4>
-    您访问的页面发生意外错误，请联系网站<a id="send-mail" href="">管理员</a> <span id="countdown">10</span> 秒后自动跳转到<a href="{% url 'learning_logs:home' %}">主页</a>。
+    您访问的页面发生意外错误，请联系网站<a id="send-mail" href="">管理员</a>。<span id="countdown">10</span> 秒后自动跳转到<a href="{% url 'learning_logs:home' %}">主页</a>。
   </h4>
   <script type="text/javascript">
-    document.getElementById("send-mail").href = "mailto:26922dd@sina.com?subject=At%20"+Date()+"%20had%20an%20500%20error";
+    document.getElementById("send-mail").href = "mailto:26922dd%40sina.com?subject=500%20Error&body=Time: "+Date()+"\nURL: "+document.URL;
 
     window.onload = function() {
       var time = 10;

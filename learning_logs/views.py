@@ -5,6 +5,7 @@ from django.urls import reverse
 from django.http import HttpResponseRedirect, Http404
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.utils import timezone
+from django.views.decorators.gzip import gzip_page
 
 from .models import Topic, Entry
 from .forms import TopicForm, EntryForm
@@ -15,23 +16,24 @@ def check_user_have_email(user):
     user_info = user_info[0]
     return user_info.check_email
 
-def home(request):
-    """学习笔记的主页"""
-    # log_object = io.open('learning_log/static/logs', 'at')
-    # print(time.time(), request.headers['User-Agent'], request.META['REMOTE_ADDR'], file=log_object, end='\n')
+@gzip_page
+def topics(request):
+    """显示当前用户的主题， 如果未登录返回学习笔记的主页"""
     if request.user.is_authenticated:
-        return HttpResponseRedirect(reverse('learning_logs:topics'))
+        user_info = UserInfo.objects.filter(owner=request.user)
+        user_info = user_info[0]
+
+        if user_info.check_email:
+            topics = Topic.objects.filter(owner=request.user).order_by('date_added')
+            context = {'topics': topics, }
+            return render(request, 'learning_logs/topics.html', context)
+        else:
+            return HttpResponseRedirect(reverse('users:verify'))
+
     else:
         return render(request, 'learning_logs/home.html')
 
-@login_required
-@user_passes_test(check_user_have_email, login_url='/users/verify/')
-def topics(request):
-    """显示当前用户的主题"""
-    topics = Topic.objects.filter(owner=request.user).order_by('date_added')
-    context = {'topics': topics}
-    return render(request, 'learning_logs/topics.html', context)
-
+@gzip_page
 @login_required
 @user_passes_test(check_user_have_email, login_url='/users/verify/')
 def topic(request, topic_id):
@@ -44,6 +46,7 @@ def topic(request, topic_id):
     context = {'topic': topic, 'entries': entries}
     return render(request, 'learning_logs/topic.html', context)
 
+@gzip_page
 @login_required
 @user_passes_test(check_user_have_email, login_url='/users/verify/')
 def new_topic(request):
@@ -63,6 +66,7 @@ def new_topic(request):
     context = {'form':form}
     return render(request, 'learning_logs/new_topic.html', context)
 
+@gzip_page
 @login_required
 @user_passes_test(check_user_have_email, login_url='/users/verify/')
 def new_entry(request, topic_id):
@@ -86,6 +90,7 @@ def new_entry(request, topic_id):
     context = {'topic':topic, 'form':form}
     return render(request, 'learning_logs/new_entry.html', context)   
 
+@gzip_page
 @login_required
 @user_passes_test(check_user_have_email, login_url='/users/verify/')
 def edit_entry(request, topic_id, entry_id):

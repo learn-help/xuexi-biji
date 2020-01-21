@@ -1,8 +1,9 @@
-{% extends "learning_logs/base.html" %}
+{% extends "about/base.html" %}
 {% load bootstrap4 %}
 
 {% block title %}
-   <title>登录 | 学习笔记</title>
+  <link rel="canonical" href="{% url 'users:login' %}">
+  <title>登录 | 学生助手</title>
 {% endblock title %}
 
 {% block header %}
@@ -26,7 +27,7 @@
       <a href="{% url 'users:register' %}">免费注册</a>
     {% endbuttons %}
     
-    <input type="hidden" name="next" value="{% url 'learning_logs:topics' %}">
+    <input type="hidden" name="next" value="{% url 'about:home' %}">
   </form>
 
   <script type="text/javascript">
